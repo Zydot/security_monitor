@@ -1,0 +1,3 @@
+name: SecurityMonitor
+version: '${project.version}'
+main: io.github.michstabe.securitymonitor.SecurityMonitor

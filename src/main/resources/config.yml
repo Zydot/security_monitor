@@ -1,0 +1,33 @@
+# 相关参数配置
+settings:
+  # 提醒消息前缀
+  prefix: "&b[Tip]"
+  login:
+    # 登录次数限制，达到该次数则限制登录
+    loginNum: 1
+    # 限制时间设置(单位 秒)
+    loginTime: 5
+    # 踢出玩家的理由支持换行符
+    kickMsg: "&c登录次数过多\n&a详情请查看：&bwwww.michstabe.com"
+
+  chat:
+    # 发送敏感信息次数，达到该次数则禁言处理
+    chatNum: 1
+    # 禁言时间设置(单位 秒)
+    chatTime: 5
+    # 敏感消息提示
+    chatMessage: "&c您输入的内容包含敏感信息"
+    # 禁言消息提示
+    chatBanMessage: "&c您已经被禁言"
+    # 敏感词配置，以List格式读取
+    blackListWord:
+      - "菜"
+      - "菜就多练"
+# 数据库配置
+mysql:
+  enabled: false
+  host: localhost
+  port: 3306
+  username: root
+  password: 123456
+  database: security_monitor
