@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 /**
  * @projectName: SecurityMonitor
@@ -49,24 +51,25 @@ public class DBDataManager implements IDataManager{
 
     @Override
     public void insert(Player player, String hostname, String ip, String type){
-        Connection conn = DBUtils.getConn();
-        String time = getNow();
-        String SQL = "INSERT INTO `monitor_player_data` (player_name,player_uuid,hostname, ip_address,type,time) VALUES (?,?,?,?,?,?)";
-        try {
-            PreparedStatement pstm = conn.prepareStatement(SQL);
-            pstm.setString(1, player.getDisplayName());
-            pstm.setString(2, player.getUniqueId().toString());
-            pstm.setString(3, hostname);
-            pstm.setString(4, ip);
-            pstm.setString(5, type);
-            pstm.setString(6, getNow());
-            pstm.executeUpdate();
-            DBUtils.close(pstm);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }finally {
-            DBUtils.close(conn);
-        }
+        CompletableFuture.runAsync(() ->{
+            Connection conn = DBUtils.getConn();
+            String SQL = "INSERT INTO `monitor_player_data` (player_name,player_uuid,hostname, ip_address,type,time) VALUES (?,?,?,?,?,?)";
+            try {
+                PreparedStatement pstm = conn.prepareStatement(SQL);
+                pstm.setString(1, player.getDisplayName());
+                pstm.setString(2, player.getUniqueId().toString());
+                pstm.setString(3, hostname);
+                pstm.setString(4, ip);
+                pstm.setString(5, type);
+                pstm.setString(6, getNow());
+                pstm.executeUpdate();
+                DBUtils.close(pstm);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }finally {
+                DBUtils.close(conn);
+            }
+        });
     }
 
     public String getNow(){

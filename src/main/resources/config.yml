@@ -2,6 +2,7 @@
 settings:
   # 提醒消息前缀
   prefix: "&b[Tip]"
+  # 登录频繁安全检测设置
   login:
     # 登录次数限制，达到该次数则限制登录
     loginNum: 1
@@ -9,7 +10,7 @@ settings:
     loginTime: 5
     # 踢出玩家的理由支持换行符
     kickMsg: "&c登录次数过多\n&a详情请查看：&bwwww.michstabe.com"
-
+  # 聊天敏感信息安全检测设置
   chat:
     # 发送敏感信息次数，达到该次数则禁言处理
     chatNum: 1
@@ -25,9 +26,22 @@ settings:
       - "菜就多练"
 # 数据库配置
 mysql:
-  enabled: false
   host: localhost
   port: 3306
   username: root
   password: 123456
   database: security_monitor
+# 举报邮箱配置
+mail:
+  # smtp服务器地址，可自信查阅
+  smtp: "smtp.qq.com"
+  # 发送邮件的邮箱
+  send: "zhouyangdot@qq.com"
+  # 邮箱授权码
+  code: "ytkktdujzvlfbdbd"
+  # 收件人邮箱 ps: 以List格式出现,接受多个收件人
+  recipients:
+    - "zhouyangdot@qq.com"
+    - "zydot998@gmail.com"
+  # 邮件主题
+  title: "服务器<->举报"

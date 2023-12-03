@@ -19,6 +19,8 @@ public class ConfigLoader {
 
     private static final CopyOnWriteArrayList<String> blackListWord = new CopyOnWriteArrayList<>();
 
+    private static final CopyOnWriteArrayList<String> recipientList = new CopyOnWriteArrayList<>();
+
 
     public static void initConfigLoader(SecurityMonitor securityMonitor) {
         configYaml = new ConfigObject("config.yml", securityMonitor);
@@ -32,6 +34,7 @@ public class ConfigLoader {
         zhCnYaml.reloadConfig();
         enUsYaml.reloadConfig();
         blackListWord.addAll(configYaml.getConfig().getStringList("settings.chat.blackListWord"));
+        recipientList.addAll(configYaml.getConfig().getStringList("mail.recipients"));
     }
 
     public static ConfigObject getConfigYaml() {
@@ -49,4 +52,6 @@ public class ConfigLoader {
     public static CopyOnWriteArrayList<String> getBlackListWord() {
         return blackListWord;
     }
+
+    public static CopyOnWriteArrayList<String> getRecipientList(){ return recipientList; }
 }

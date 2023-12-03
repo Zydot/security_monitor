@@ -44,12 +44,7 @@ public class ChatAbnormal implements Listener {
                     countMap.put(uuid, count + 1);
                     TaskManager.enablePlayerBanChatTask(uuid, countMap);
                     IDataManager data = new DBDataManager();
-                    new BukkitRunnable(){
-                        @Override
-                        public void run() {
-                            data.insert(event.getPlayer(), "", "", "禁言");
-                        }
-                    }.runTaskAsynchronously(SecurityMonitor.INSTANCE);
+                    data.insert(event.getPlayer(), "", "", "禁言");
                 }
                 return;
             } else {

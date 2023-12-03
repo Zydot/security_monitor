@@ -28,12 +28,7 @@ public class LoginAttempt implements Listener {
                 countMap.put(uuid, count + 1);
                 TaskManager.enablePlayerBanLoginTask(uuid, countMap);
                 IDataManager data = new DBDataManager();
-                new BukkitRunnable(){
-                    @Override
-                    public void run() {
-                        data.insert(event.getPlayer(), event.getHostname(), event.getRealAddress().toString(),"限制登录");
-                    }
-                }.runTaskAsynchronously(SecurityMonitor.INSTANCE);
+                data.insert(event.getPlayer(), event.getHostname(), event.getRealAddress().toString(),"限制登录");
             }
         } else {
             countMap.put(uuid, count + 1);

@@ -1,3 +1,6 @@
 name: SecurityMonitor
 version: '${project.version}'
 main: io.github.michstabe.securitymonitor.SecurityMonitor
+commands:
+  sm:
+    description: 指令
