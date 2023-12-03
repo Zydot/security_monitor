@@ -36,12 +36,11 @@ mail:
   # smtp服务器地址，可自信查阅
   smtp: "smtp.qq.com"
   # 发送邮件的邮箱
-  send: "zhouyangdot@qq.com"
+  send: ""
   # 邮箱授权码
-  code: "ytkktdujzvlfbdbd"
+  code: ""
   # 收件人邮箱 ps: 以List格式出现,接受多个收件人
   recipients:
-    - "zhouyangdot@qq.com"
-    - "zydot998@gmail.com"
+    - ""
   # 邮件主题
   title: "服务器<->举报"
